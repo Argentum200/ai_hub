@@ -70,18 +70,55 @@ body {
     background-color: #374151;
 }
 
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 4rem; /* Height of header */
+    right: 0;
+    width: 250px;
+    background-color: #1f2937;
+    border-left: 1px solid #374151;
+    border-bottom: 1px solid #374151;
+    padding: 1rem;
+    z-index: 99;
+}
+
+.mobile-nav-menu.active {
+    display: flex;
+}
+
+.mobile-nav-menu .nav-link {
+    padding: 1rem;
+    border-bottom: 1px solid #374151;
+}
+.mobile-nav-menu .nav-link:last-child {
+    border-bottom: none;
+}
+
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #1f2937 0%, #1e3a8a 50%, #000000 100%);
     padding: 5rem 0;
     text-align: center;
-    position: relative; /* Додано для позиціонування канвасу */
-    overflow: hidden;   /* Додано, щоб анімація не виходила за межі блоку */
+    position: relative; 
+    overflow: hidden;
 }
 
 .hero-content {
-    position: relative; /* Додано для z-index */
-    z-index: 1;         /* Розміщуємо контент поверх канвасу */
+    position: relative; 
+    z-index: 1;
 }
 
 #neural-network-canvas {
@@ -90,7 +127,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Розміщуємо канвас позаду контенту */
+    z-index: 0;
 }
 
 
@@ -489,11 +526,11 @@ body {
 }
 
 .partner-logo-footer {
-    height: 50px; /* Збільшена висота логотипу */
-    filter: brightness(0) invert(1); /* Робить логотип білим */
+    height: 50px;
+    filter: brightness(0) invert(1);
     opacity: 0.8;
     transition: opacity 0.3s ease;
-    display: block; /* Забирає зайвий відступ знизу */
+    display: block;
 }
 
 .partner-logo-footer:hover {
@@ -514,6 +551,10 @@ body {
     .nav {
         display: none;
     }
+
+    .mobile-nav-toggle {
+        display: block;
+    }
     
     .hero-title {
         font-size: 2rem;
@@ -528,7 +569,7 @@ body {
     }
     
     .container {
-        padding: 0 0.5rem;
+        padding: 0 1rem;
     }
 
     .footer-content-new {
@@ -544,16 +585,4 @@ body {
     .footer-copyright p {
         text-align: center;
     }
-}
-
-/* Legacy Footer - for index.html */
-.footer {
-    background-color: #1f2937;
-    border-top: 1px solid #374151;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.footer-content p {
-    color: #9ca3af;
 }

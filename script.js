@@ -8,6 +8,7 @@ let currentUser = null;
  */
 function updateUserUI() {
     const userAccountLink = document.getElementById('userAccountLink');
+    if (!userAccountLink) return;
     if (currentUser) {
         // Користувач залогінений
         userAccountLink.innerHTML = `<i class="fas fa-user-check"></i> Привіт, ${currentUser.name}`;
@@ -37,7 +38,7 @@ function logout() {
     updateUserUI();
     showNotification('Вихід', 'Ви успішно вийшли з системи.', 'info');
     // Оновлюємо відображення на сторінці форуму, якщо ми на ній
-    if (window.location.pathname.includes('forum.html')) {
+    if (window.location.pathname.includes('forum.html') && typeof displayPosts === 'function') {
         displayPosts(); 
     }
 }
@@ -61,9 +62,12 @@ function loadUserFromStorage() {
 }
 
 function scrollToTechnologies() {
-    document.getElementById('technologies').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
+    const techSection = document.getElementById('technologies');
+    if (techSection) {
+        techSection.scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
 }
 
 function openUserDialog() {
@@ -117,47 +121,39 @@ function switchAuthMode() {
     isLogin ? switchTab('login') : switchTab('register');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Завантажуємо користувача при старті сторінки
-    loadUserFromStorage();
-    updateUserUI();
-
-    const authForm = document.getElementById('authForm');
+function handleAuthForm(e) {
+    e.preventDefault();
     
-    authForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('email').value;
-        const nameInput = document.getElementById('name');
-        
-        let userToSave;
+    const email = document.getElementById('email').value;
+    const nameInput = document.getElementById('name');
+    
+    let userToSave;
 
-        if (isLogin) {
-            const mockName = email.split('@')[0];
-            userToSave = { name: mockName, email: email };
-            showNotification('Успішний вхід', `Ласкаво просимо, ${userToSave.name}!`);
-        } else {
-            const name = nameInput.value.trim();
-            if (!name) {
-                showNotification('Помилка реєстрації', 'Будь ласка, введіть ваше ім\'я.', 'error');
-                return;
-            }
-            userToSave = { name: name, email: email };
-            showNotification('Успішна реєстрація', `Дякуємо за реєстрацію, ${userToSave.name}!`);
+    if (isLogin) {
+        const mockName = email.split('@')[0];
+        userToSave = { name: mockName, email: email };
+        showNotification('Успішний вхід', `Ласкаво просимо, ${userToSave.name}!`);
+    } else {
+        const name = nameInput.value.trim();
+        if (!name) {
+            showNotification('Помилка реєстрації', 'Будь ласка, введіть ваше ім\'я.', 'error');
+            return;
         }
-        
-        currentUser = userToSave;
-        saveUserToStorage(currentUser); // Зберігаємо в localStorage
-        
-        closeUserDialog();
-        clearForm();
-        updateUserUI();
-        // Оновлюємо відображення на сторінці форуму, якщо ми на ній
-        if (window.location.pathname.includes('forum.html')) {
-            displayPosts();
-        }
-    });
-});
+        userToSave = { name: name, email: email };
+        showNotification('Успішна реєстрація', `Дякуємо за реєстрацію, ${userToSave.name}!`);
+    }
+    
+    currentUser = userToSave;
+    saveUserToStorage(currentUser); // Зберігаємо в localStorage
+    
+    closeUserDialog();
+    clearForm();
+    updateUserUI();
+    
+    if (window.location.pathname.includes('forum.html') && typeof displayPosts === 'function') {
+        displayPosts();
+    }
+}
 
 function googleAuth() {
     currentUser = { name: "Google User", email: "user@gmail.com" };
@@ -166,16 +162,15 @@ function googleAuth() {
     showNotification('Успішний вхід через Google', `Ласкаво просимо, ${currentUser.name}!`);
     closeUserDialog();
     updateUserUI();
-    // Оновлюємо відображення на сторінці форуму, якщо ми на ній
-    if (window.location.pathname.includes('forum.html')) {
+
+    if (window.location.pathname.includes('forum.html') && typeof displayPosts === 'function') {
         displayPosts();
     }
 }
 
 function clearForm() {
-    document.getElementById('email').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('name').value = '';
+    const authForm = document.getElementById('authForm');
+    if (authForm) authForm.reset();
 }
 
 function showNotification(title, message, type = 'success') {
@@ -195,14 +190,94 @@ function showNotification(title, message, type = 'success') {
     setTimeout(() => notification.remove(), 3000);
 }
 
-window.addEventListener('click', (e) => {
-    if (e.target === document.getElementById('userModal')) closeUserDialog();
-});
+// --- NEW DYNAMIC ACTIVE LINK LOGIC ---
+function updateActiveNavLink() {
+    const navLinks = document.querySelectorAll('.nav .nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu .nav-link');
+    const allLinks = [...navLinks, ...mobileNavLinks];
+    
+    let currentPath = window.location.pathname.split("/").pop();
+    if (currentPath === '' || currentPath === 'index.html') {
+        // Handle scroll-based active link on the main page
+        const sections = document.querySelectorAll('section[id]');
+        let activeSectionId = 'hero'; // Default to top section
+        const headerHeight = document.querySelector('.header').offsetHeight;
 
-document.addEventListener('click', (e) => {
-    if (e.target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const target = document.querySelector(e.target.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - headerHeight;
+            if (window.scrollY >= sectionTop) {
+                activeSectionId = section.id;
+            }
+        });
+
+        allLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href');
+            if (activeSectionId === 'hero' && (linkHref === 'index.html' || linkHref === '/')) {
+                link.classList.add('active');
+            } else if (linkHref.includes(`#${activeSectionId}`)) {
+                link.classList.add('active');
+            }
+        });
+
+    } else {
+        // Handle page-based active link on other pages
+        allLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
     }
+}
+
+// --- NEW MOBILE NAVIGATION LOGIC ---
+function handleMobileNav() {
+    const toggleButton = document.getElementById('mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobile-nav-menu');
+    if (toggleButton && mobileMenu) {
+        toggleButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Load user from storage on page load
+    loadUserFromStorage();
+    updateUserUI();
+
+    // Handle authentication form submission
+    const authForm = document.getElementById('authForm');
+    if (authForm) {
+        authForm.addEventListener('submit', handleAuthForm);
+    }
+    
+    // Close modal on outside click
+    const userModal = document.getElementById('userModal');
+    if (userModal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === userModal) closeUserDialog();
+        });
+    }
+    
+    // Smooth scroll for anchor links
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (link && !link.getAttribute('href').startsWith('#!')) { // Avoid interfering with other scripts
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
+    // Initialize mobile navigation
+    handleMobileNav();
+    
+    // Initialize active nav link logic
+    updateActiveNavLink();
+    window.addEventListener('scroll', updateActiveNavLink);
 });
