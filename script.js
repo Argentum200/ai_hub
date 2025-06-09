@@ -1,8 +1,7 @@
 // Navigation and UI functionality
 let isLogin = true;
-let currentUser = null; // Зберігає дані поточного користувача {name, email}
-
-// --- NEW FUNCTIONS ---
+// Тепер currentUser буде завантажуватися з localStorage
+let currentUser = null; 
 
 /**
  * Оновлює інтерфейс користувача (хедер) в залежності від того, чи залогінений користувач.
@@ -14,7 +13,6 @@ function updateUserUI() {
         userAccountLink.innerHTML = `<i class="fas fa-user-check"></i> Привіт, ${currentUser.name}`;
         userAccountLink.onclick = (e) => {
             e.preventDefault();
-            // Показуємо опцію виходу або одразу виходимо
             if (confirm('Бажаєте вийти з акаунту?')) {
                 logout();
             }
@@ -34,11 +32,33 @@ function updateUserUI() {
  */
 function logout() {
     currentUser = null;
+    // Очищуємо дані користувача з localStorage
+    localStorage.removeItem('currentUser'); 
     updateUserUI();
     showNotification('Вихід', 'Ви успішно вийшли з системи.', 'info');
+    // Оновлюємо відображення на сторінці форуму, якщо ми на ній
+    if (window.location.pathname.includes('forum.html')) {
+        displayPosts(); 
+    }
 }
 
-// --- END NEW FUNCTIONS ---
+/**
+ * Зберігає дані користувача у localStorage.
+ * @param {object} user - Об'єкт користувача {name, email}
+ */
+function saveUserToStorage(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+}
+
+/**
+ * Завантажує дані користувача з localStorage.
+ */
+function loadUserFromStorage() {
+    const userJson = localStorage.getItem('currentUser');
+    if (userJson) {
+        currentUser = JSON.parse(userJson);
+    }
+}
 
 function scrollToTechnologies() {
     document.getElementById('technologies').scrollIntoView({ 
@@ -64,12 +84,12 @@ function switchTab(tab) {
     if (tab === 'login') {
         buttons[0].classList.add('active');
         nameField.style.display = 'none';
-        nameInput.required = false; // Робимо поле імені необов'язковим для входу
+        nameInput.required = false; 
         isLogin = true;
     } else {
         buttons[1].classList.add('active');
         nameField.style.display = 'block';
-        nameInput.required = true; // Робимо поле імені обов'язковим для реєстрації
+        nameInput.required = true; 
         isLogin = false;
     }
     
@@ -94,15 +114,12 @@ function updateFormTexts() {
 
 function switchAuthMode() {
     isLogin = !isLogin;
-    if (isLogin) {
-        switchTab('login');
-    } else {
-        switchTab('register');
-    }
+    isLogin ? switchTab('login') : switchTab('register');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Ініціалізуємо інтерфейс при завантаженні сторінки
+    // Завантажуємо користувача при старті сторінки
+    loadUserFromStorage();
     updateUserUI();
 
     const authForm = document.getElementById('authForm');
@@ -111,46 +128,48 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
         const nameInput = document.getElementById('name');
         
-        if (isLogin) {
-            // Mock login
-            // Для простоти, ім'я беремо з email, але в реальному додатку його б тягнули з бази
-            const mockName = email.split('@')[0];
-            currentUser = { name: mockName, email: email };
-            showNotification('Успішний вхід', `Ласкаво просимо, ${currentUser.name}!`);
-        } else {
-            // Registration
-            const name = nameInput.value.trim();
+        let userToSave;
 
-            // --- UPDATED VALIDATION ---
+        if (isLogin) {
+            const mockName = email.split('@')[0];
+            userToSave = { name: mockName, email: email };
+            showNotification('Успішний вхід', `Ласкаво просимо, ${userToSave.name}!`);
+        } else {
+            const name = nameInput.value.trim();
             if (!name) {
                 showNotification('Помилка реєстрації', 'Будь ласка, введіть ваше ім\'я.', 'error');
-                return; // Зупиняємо виконання, якщо ім'я не введено
+                return;
             }
-            // --- END UPDATED VALIDATION ---
-
-            currentUser = { name: name, email: email };
-            showNotification('Успішна реєстрація', `Дякуємо за реєстрацію, ${currentUser.name}!`);
+            userToSave = { name: name, email: email };
+            showNotification('Успішна реєстрація', `Дякуємо за реєстрацію, ${userToSave.name}!`);
         }
+        
+        currentUser = userToSave;
+        saveUserToStorage(currentUser); // Зберігаємо в localStorage
         
         closeUserDialog();
         clearForm();
-        updateUserUI(); // Оновлюємо інтерфейс після логіну/реєстрації
+        updateUserUI();
+        // Оновлюємо відображення на сторінці форуму, якщо ми на ній
+        if (window.location.pathname.includes('forum.html')) {
+            displayPosts();
+        }
     });
 });
 
 function googleAuth() {
-    // Mock Google authentication
-    currentUser = {
-        name: "Google User",
-        email: "user@gmail.com"
-    };
+    currentUser = { name: "Google User", email: "user@gmail.com" };
+    saveUserToStorage(currentUser); // Зберігаємо в localStorage
     
     showNotification('Успішний вхід через Google', `Ласкаво просимо, ${currentUser.name}!`);
     closeUserDialog();
-    updateUserUI(); // Оновлюємо інтерфейс
+    updateUserUI();
+    // Оновлюємо відображення на сторінці форуму, якщо ми на ній
+    if (window.location.pathname.includes('forum.html')) {
+        displayPosts();
+    }
 }
 
 function clearForm() {
@@ -159,61 +178,31 @@ function clearForm() {
     document.getElementById('name').value = '';
 }
 
-// Оновлена функція для показу сповіщень різного типу (успіх, помилка, інформація)
 function showNotification(title, message, type = 'success') {
     const notification = document.createElement('div');
-    
-    let backgroundColor;
-    switch (type) {
-        case 'error':
-            backgroundColor = '#dc2626'; // red
-            break;
-        case 'info':
-            backgroundColor = '#2563eb'; // blue
-            break;
-        default:
-            backgroundColor = '#16a34a'; // green
-            break;
-    }
+    let backgroundColor = type === 'error' ? '#dc2626' : (type === 'info' ? '#2563eb' : '#16a34a');
 
     notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${backgroundColor};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-        max-width: 300px;
-    `;
+        position: fixed; top: 20px; right: 20px; background: ${backgroundColor}; color: white;
+        padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 1001; max-width: 300px;`;
     
     notification.innerHTML = `
         <div style="font-weight: 600; margin-bottom: 0.25rem;">${title}</div>
-        <div style="font-size: 0.875rem;">${message}</div>
-    `;
+        <div style="font-size: 0.875rem;">${message}</div>`;
     
     document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
+    setTimeout(() => notification.remove(), 3000);
 }
 
-window.addEventListener('click', function(e) {
-    const modal = document.getElementById('userModal');
-    if (e.target === modal) {
-        closeUserDialog();
-    }
+window.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('userModal')) closeUserDialog();
 });
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', (e) => {
     if (e.target.matches('a[href^="#"]')) {
         e.preventDefault();
         const target = document.querySelector(e.target.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 });
