@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форум - ШІ Хаб</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="forum.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>ШІ Хаб</h1>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Головна
+                    </a>
+                    <a href="index.html#technologies" class="nav-link">
+                        <i class="fas fa-brain"></i>
+                        ШІ Технології
+                    </a>
+                    <a href="forum.html" class="nav-link active">
+                        <i class="fas fa-comments"></i>
+                        Форум
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        Про нас
+                    </a>
+                    <a href="#" class="nav-link" onclick="openUserDialog()">
+                        <i class="fas fa-user"></i>
+                        Обліковий запис
+                    </a>
+                    <a href="help.html" class="nav-link">
+                        <i class="fas fa-question-circle"></i>
+                        Допомога
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="forum-header">
+                <h1><span class="gradient-text">Форум</span> спільноти</h1>
+                <p>Діліться досвідом, задавайте питання та знаходьте відповіді разом з іншими ентузіастами ШІ</p>
+            </div>
+
+            <div class="forum-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">1,234</div>
+                        <div class="stat-label">Обговорення</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">567</div>
+                        <div class="stat-label">Учасники</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">8,901</div>
+                        <div class="stat-label">Перегляди</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Підтримка</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forum-controls">
+                <div class="search-and-categories">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Пошук по темах та обговореннях..." onkeyup="searchPosts()">
+                    </div>
+                    <div class="categories">
+                        <button class="category-btn active" onclick="filterByCategory('all')">Всі категорії</button>
+                        <button class="category-btn" onclick="filterByCategory('general')">Загальне</button>
+                        <button class="category-btn" onclick="filterByCategory('ml')">Машинне навчання</button>
+                        <button class="category-btn" onclick="filterByCategory('nlp')">NLP</button>
+                        <button class="category-btn" onclick="filterByCategory('cv')">Комп'ютерний зір</button>
+                        <button class="category-btn" onclick="filterByCategory('tools')">Інструменти</button>
+                        <button class="category-btn" onclick="filterByCategory('help')">Допомога</button>
+                    </div>
+                </div>
+                <button class="create-topic-btn" onclick="openCreateTopicModal()">
+                    <i class="fas fa-plus"></i>
+                    Створити тему
+                </button>
+            </div>
+
+            <div class="forum-posts" id="forumPosts">
+                <!-- Forum posts will be dynamically generated here -->
+            </div>
+
+            <div class="pagination">
+                <button class="pagination-btn" onclick="changePage(-1)" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                    Попередня
+                </button>
+                <span class="page-info" id="pageInfo">Сторінка 1 з 5</span>
+                <button class="pagination-btn" onclick="changePage(1)" id="nextBtn">
+                    Наступна
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 ШІ Хаб. Всі права захищені.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Topic Modal -->
+    <div id="createTopicModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeCreateTopicModal()">&times;</span>
+            <h2>Створити нову тему</h2>
+            <form id="createTopicForm">
+                <div class="form-group">
+                    <label for="topicTitle">Заголовок теми</label>
+                    <input type="text" id="topicTitle" placeholder="Введіть заголовок теми" required>
+                </div>
+                <div class="form-group">
+                    <label for="topicCategory">Категорія</label>
+                    <select id="topicCategory" required>
+                        <option value="">Оберіть категорію</option>
+                        <option value="general">Загальне</option>
+                        <option value="ml">Машинне навчання</option>
+                        <option value="nlp">NLP</option>
+                        <option value="cv">Комп'ютерний зір</option>
+                        <option value="tools">Інструменти</option>
+                        <option value="help">Допомога</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="topicContent">Опис</label>
+                    <textarea id="topicContent" rows="6" placeholder="Опишіть вашу тему або питання детально..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="closeCreateTopicModal()">Скасувати</button>
+                    <button type="submit" class="submit-btn">Створити тему</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Account Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserDialog()">&times;</span>
+            <h2>Обліковий запис</h2>
+            <div class="auth-form">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('login')">Вхід</button>
+                    <button class="tab-button" onclick="switchTab('register')">Реєстрація</button>
+                </div>
+                <form id="authForm">
+                    <div id="nameField" class="form-group" style="display: none;">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" placeholder="Введіть ваше ім'я">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введіть ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введіть ваш пароль" required>
+                    </div>
+                    <button type="submit" class="submit-button">Увійти</button>
+                </form>
+                <div class="divider">
+                    <span>Або</span>
+                </div>
+                <button class="google-button" onclick="googleAuth()">
+                    <i class="fab fa-google"></i>
+                    Увійти через Google
+                </button>
+                <button class="switch-mode" onclick="switchAuthMode()">
+                    Немає акаунту? Зареєструйтеся
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="forum.js"></script>
+</body>
+</html>

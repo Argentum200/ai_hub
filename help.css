@@ -1,0 +1,354 @@
+
+.main-content {
+    min-height: 100vh;
+    background-color: #000000;
+    padding: 2rem 0;
+}
+
+.help-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.help-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.help-header p {
+    font-size: 1.125rem;
+    color: #9ca3af;
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.help-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.help-card {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.help-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.help-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.help-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.help-card p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.help-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    border: 1px solid;
+}
+
+.help-button.quick-start {
+    background-color: transparent;
+    color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.help-button.quick-start:hover {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.help-button.ai-basics {
+    background-color: transparent;
+    color: #10b981;
+    border-color: #10b981;
+}
+
+.help-button.ai-basics:hover {
+    background-color: #10b981;
+    color: white;
+}
+
+.help-button.community {
+    background-color: transparent;
+    color: #8b5cf6;
+    border-color: #8b5cf6;
+}
+
+.help-button.community:hover {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.contact-section {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.contact-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.contact-section > p {
+    font-size: 1.125rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.contact-description {
+    max-width: 32rem;
+    margin: 0 auto 2rem;
+}
+
+.contact-description p {
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+.contact-button {
+    background-color: #f59e0b;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-button:hover {
+    background-color: #d97706;
+    transform: translateY(-1px);
+}
+
+.faq-section {
+    margin-bottom: 3rem;
+}
+
+.faq-section h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.faq-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.faq-header i {
+    color: #3b82f6;
+    font-size: 1.25rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.faq-header h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.faq-item p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin: 0;
+    margin-left: 2rem;
+}
+
+.resources-section {
+    margin-bottom: 3rem;
+}
+
+.resources-section h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.resource-card {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+}
+
+.resource-card:hover {
+    border-color: #3b82f6;
+}
+
+.resource-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.resource-header i {
+    color: #3b82f6;
+    font-size: 1.5rem;
+}
+
+.resource-header h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.resource-card p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.resource-button {
+    background-color: transparent;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resource-button:hover {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+}
+
+.copyright p {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .help-header h1 {
+        font-size: 2rem;
+    }
+    
+    .help-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-section {
+        padding: 1.5rem;
+    }
+    
+    .faq-item p {
+        margin-left: 0;
+        margin-top: 0.75rem;
+    }
+    
+    .faq-header {
+        align-items: flex-start;
+    }
+    
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}

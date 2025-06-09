@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ШІ Хаб - Ваші ворота до штучного інтелекту</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>ШІ Хаб</h1>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        Головна
+                    </a>
+                    <a href="#technologies" class="nav-link">
+                        <i class="fas fa-brain"></i>
+                        ШІ Технології
+                    </a>
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        Форум
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        Про нас
+                    </a>
+                    <a href="#" class="nav-link" onclick="openUserDialog()">
+                        <i class="fas fa-user"></i>
+                        Обліковий запис
+                    </a>
+                    <a href="help.html" class="nav-link">
+                        <i class="fas fa-question-circle"></i>
+                        Допомога
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Ласкаво просимо до
+                        <span class="gradient-text">ШІ Хабу</span>
+                    </h1>
+                    <p class="hero-description">
+                        Ваші ворота до найпередовіших платформ штучного інтелекту у світі. 
+                        Досліджуйте, вивчайте та творіть з найсучаснішими нейронними мережами.
+                    </p>
+                    <div class="hero-badge">
+                        <i class="fas fa-sparkles"></i>
+                        <span>Відкрийте майбутнє ШІ</span>
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <button class="cta-button" onclick="scrollToTechnologies()">
+                        <span>Почати дослідження</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section id="technologies" class="technologies">
+            <div class="container">
+                <div class="section-header">
+                    <h2>ШІ <span class="gradient-text">Технології</span></h2>
+                </div>
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">ChatGPT</h3>
+                                <p class="ai-company">OpenAI</p>
+                            </div>
+                            <div class="ai-status"></div>
+                        </div>
+                        <p class="ai-description">
+                            Передовий розмовний ШІ з виняткові можливостями міркування та розуміння природної мови.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Природні розмови</li>
+                                <li><i class="fas fa-arrow-right"></i> Генерація коду</li>
+                                <li><i class="fas fa-arrow-right"></i> Креативне письмо</li>
+                                <li><i class="fas fa-arrow-right"></i> Вирішення проблем</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button green" onclick="window.open('https://openai.com/chatgpt/overview/', '_blank')">
+                            <span>Перейти до ChatGPT</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Gemini</h3>
+                                <p class="ai-company">Google</p>
+                            </div>
+                            <div class="ai-status"></div>
+                        </div>
+                        <p class="ai-description">
+                            Мультимодальна модель ШІ від Google, створена для міркування з текстом, зображеннями, відео, аудіо та кодом.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Мультимодальна обробка</li>
+                                <li><i class="fas fa-arrow-right"></i> Розвинуте міркування</li>
+                                <li><i class="fas fa-arrow-right"></i> Інформація в реальному часі</li>
+                                <li><i class="fas fa-arrow-right"></i> Інтеграція з сервісами Google</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button blue" onclick="window.open('https://gemini.google.com/app?hl=uk', '_blank')">
+                            <span>Перейти до Gemini</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Claude</h3>
+                                <p class="ai-company">Anthropic</p>
+                            </div>
+                            <div class="ai-status"></div>
+                        </div>
+                        <p class="ai-description">
+                            ШІ-асистент, зосереджений на корисності, безпеці та чесності з потужними аналітичними можливостями.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Етичні відповіді ШІ</li>
+                                <li><i class="fas fa-arrow-right"></i> Довгоформатний аналіз</li>
+                                <li><i class="fas fa-arrow-right"></i> Допомога з кодом</li>
+                                <li><i class="fas fa-arrow-right"></i> Обробка документів</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button orange" onclick="window.open('https://claude.ai/', '_blank')">
+                            <span>Перейти до Claude</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Grok</h3>
+                                <p class="ai-company">xAI</p>
+                            </div>
+                            <div class="ai-status"></div>
+                        </div>
+                        <p class="ai-description">
+                            ШІ з знаннями світу в реальному часі та унікальною особистістю, створений для розуміння всесвіту.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Доступ до даних в реальному часі</li>
+                                <li><i class="fas fa-arrow-right"></i> Дотепна особистість</li>
+                                <li><i class="fas fa-arrow-right"></i> Поточні події</li>
+                                <li><i class="fas fa-arrow-right"></i> Інтеграція соціальних мереж</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button purple" onclick="window.open('https://grok.com/?referrer=website', '_blank')">
+                            <span>Перейти до Grok</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Copilot</h3>
+                                <p class="ai-company">Microsoft</p>
+                            </div>
+                            <div class="ai-status"></div>
+                        </div>
+                        <p class="ai-description">
+                            ШІ-помічник для продуктивності, інтегрований в екосистему додатків Microsoft.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Інтеграція з Office</li>
+                                <li><i class="fas fa-arrow-right"></i> Підвищення продуктивності</li>
+                                <li><i class="fas fa-arrow-right"></i> Автодоповнення коду</li>
+                                <li><i class="fas fa-arrow-right"></i> Допомога з електронною поштою</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button cyan" onclick="window.open('https://copilot.microsoft.com/', '_blank')">
+                            <span>Перейти до Copilot</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Flux AI</h3>
+                                <p class="ai-company">Black Forest Labs</p>
+                            </div>
+                            <div class="ai-status image-model"></div>
+                        </div>
+                        <p class="ai-description">
+                            Сучасна модель генерації зображень з тексту, здатна створювати високоякісні, різноманітні зображення.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Високоякісні зображення</li>
+                                <li><i class="fas fa-arrow-right"></i> Стильова універсальність</li>
+                                <li><i class="fas fa-arrow-right"></i> Швидка генерація</li>
+                                <li><i class="fas fa-arrow-right"></i> Творча гнучкість</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button pink" onclick="window.open('https://www.flux.ai/', '_blank')">
+                            <span>Перейти до Flux AI</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <div class="ai-info">
+                                <h3 class="ai-name">Stable Diffusion</h3>
+                                <p class="ai-company">Stability AI</p>
+                            </div>
+                            <div class="ai-status image-model"></div>
+                        </div>
+                        <p class="ai-description">
+                            Модель дифузії з відкритим кодом для генерації зображень з тексту та редагування зображень.
+                        </p>
+                        <div class="ai-features">
+                            <h4>Ключові особливості:</h4>
+                            <ul>
+                                <li><i class="fas fa-arrow-right"></i> Відкритий код</li>
+                                <li><i class="fas fa-arrow-right"></i> Редагування зображень</li>
+                                <li><i class="fas fa-arrow-right"></i> Перенесення стилю</li>
+                                <li><i class="fas fa-arrow-right"></i> Власне навчання</li>
+                            </ul>
+                        </div>
+                        <button class="ai-button indigo" onclick="window.open('https://stability.ai/', '_blank')">
+                            <span>Перейти до Stable Diffusion</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 ШІ Хаб. Ваші ворота до штучного інтелекту.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- User Account Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserDialog()">&times;</span>
+            <h2>Обліковий запис</h2>
+            <div class="auth-form">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('login')">Вхід</button>
+                    <button class="tab-button" onclick="switchTab('register')">Реєстрація</button>
+                </div>
+                <form id="authForm">
+                    <div id="nameField" class="form-group" style="display: none;">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" placeholder="Введіть ваше ім'я">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введіть ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введіть ваш пароль" required>
+                    </div>
+                    <button type="submit" class="submit-button">Увійти</button>
+                </form>
+                <div class="divider">
+                    <span>Або</span>
+                </div>
+                <button class="google-button" onclick="googleAuth()">
+                    <i class="fab fa-google"></i>
+                    Увійти через Google
+                </button>
+                <button class="switch-mode" onclick="switchAuthMode()">
+                    Немає акаунту? Зареєструйтеся
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

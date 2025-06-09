@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр допомоги - ШІ Хаб</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>ШІ Хаб</h1>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Головна
+                    </a>
+                    <a href="index.html#technologies" class="nav-link">
+                        <i class="fas fa-brain"></i>
+                        ШІ Технології
+                    </a>
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        Форум
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        Про нас
+                    </a>
+                    <a href="#" class="nav-link" onclick="openUserDialog()">
+                        <i class="fas fa-user"></i>
+                        Обліковий запис
+                    </a>
+                    <a href="help.html" class="nav-link active">
+                        <i class="fas fa-question-circle"></i>
+                        Допомога
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="help-header">
+                <h1><span class="gradient-text">Центр</span> допомоги</h1>
+                <p>Знайдіть відповіді на ваші питання та отримайте підтримку</p>
+            </div>
+
+            <div class="help-cards">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Швидкий старт</h3>
+                    <p>Дізнайтеся, як почати роботу з різними ШІ платформами, створити свій перший проект та отримати максимум від можливостей штучного інтелекту.</p>
+                    <a href="quick-start.html" class="help-button quick-start">
+                        Почати навчання
+                    </a>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Основи ШІ</h3>
+                    <p>Розберіться в основних поняттях штучного інтелекту, машинного навчання та нейронних мереж. Зрозумійте, як працюють сучасні ШІ системи.</p>
+                    <a href="ai-basics.html" class="help-button ai-basics">
+                        Дізнатися більше
+                    </a>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Спільнота</h3>
+                    <p>Взаємодійте з іншими користувачами, діліться досвідом та отримуйте поради від експертів у нашому форумі. Наша спільнота буде рада допомогти Вам.</p>
+                    <a href="forum.html" class="help-button community">
+                        Приєднатися до спільноти
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h2>Зв'язатися з нами</h2>
+                <p>Маєте питання або потребуєте допомоги? Наша команда підтримки готова вам допомогти.</p>
+                <div class="contact-description">
+                    <p>Якщо у вас є питання щодо використання ШІ платформ, потрібна технічна підтримка або ви хочете поділитися відгуком, ми завжди готові допомогти. Напишіть нам, і ми відповімо якнайшвидше.</p>
+                </div>
+                <button class="contact-button" onclick="sendEmail()">
+                    <i class="fas fa-envelope"></i>
+                    Написати нам
+                </button>
+            </div>
+
+            <div class="faq-section">
+                <h2>Часті питання</h2>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Як почати роботу з ШІ платформами?</h4>
+                        </div>
+                        <p>Рекомендуємо почати з нашого розділу 'Швидкий старт', де ви знайдете покрокові інструкції для кожної платформи.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Чи безпечно використовувати ШІ технології?</h4>
+                        </div>
+                        <p>Так, при правильному використанні ШІ технології є безпечними. Завжди читайте умови використання кожної платформи. Дізнайтеся більше про основи ШІ.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Скільки коштує використання ШІ платформ?</h4>
+                        </div>
+                        <p>Більшість платформ мають безкоштовні тарифи з обмеженнями та платні тарифи з розширеними можливостями. Приєднайтеся до нашої спільноти для обговорення.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resources-section">
+                <h2>Корисні ресурси</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <i class="fas fa-code"></i>
+                            <h4>Документація OpenAI</h4>
+                        </div>
+                        <p>Офіційна документація для ChatGPT та інших продуктів OpenAI</p>
+                        <button class="resource-button" onclick="window.open('https://platform.openai.com/docs', '_blank')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Дізнатися більше
+                        </button>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <i class="fas fa-code"></i>
+                            <h4>Google AI</h4>
+                        </div>
+                        <p>Ресурси та інструменти від Google для розробників ШІ</p>
+                        <button class="resource-button" onclick="window.open('https://ai.google/', '_blank')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Дізнатися більше
+                        </button>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <i class="fas fa-code"></i>
+                            <h4>Anthropic Claude</h4>
+                        </div>
+                        <p>Документація та керівництва по використанню Claude</p>
+                        <button class="resource-button" onclick="window.open('https://docs.anthropic.com/', '_blank')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Дізнатися більше
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 ШІ Хаб. Всі права захищені.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- User Account Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserDialog()">&times;</span>
+            <h2>Обліковий запис</h2>
+            <div class="auth-form">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('login')">Вхід</button>
+                    <button class="tab-button" onclick="switchTab('register')">Реєстрація</button>
+                </div>
+                <form id="authForm">
+                    <div id="nameField" class="form-group" style="display: none;">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" placeholder="Введіть ваше ім'я">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введіть ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введіть ваш пароль" required>
+                    </div>
+                    <button type="submit" class="submit-button">Увійти</button>
+                </form>
+                <div class="divider">
+                    <span>Або</span>
+                </div>
+                <button class="google-button" onclick="googleAuth()">
+                    <i class="fab fa-google"></i>
+                    Увійти через Google
+                </button>
+                <button class="switch-mode" onclick="switchAuthMode()">
+                    Немає акаунту? Зареєструйтеся
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>
