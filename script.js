@@ -1,7 +1,44 @@
-
 // Navigation and UI functionality
 let isLogin = true;
-let currentUser = null;
+let currentUser = null; // Зберігає дані поточного користувача {name, email}
+
+// --- NEW FUNCTIONS ---
+
+/**
+ * Оновлює інтерфейс користувача (хедер) в залежності від того, чи залогінений користувач.
+ */
+function updateUserUI() {
+    const userAccountLink = document.getElementById('userAccountLink');
+    if (currentUser) {
+        // Користувач залогінений
+        userAccountLink.innerHTML = `<i class="fas fa-user-check"></i> Привіт, ${currentUser.name}`;
+        userAccountLink.onclick = (e) => {
+            e.preventDefault();
+            // Показуємо опцію виходу або одразу виходимо
+            if (confirm('Бажаєте вийти з акаунту?')) {
+                logout();
+            }
+        };
+    } else {
+        // Користувач не залогінений
+        userAccountLink.innerHTML = `<i class="fas fa-user"></i> Обліковий запис`;
+        userAccountLink.onclick = (e) => {
+            e.preventDefault();
+            openUserDialog();
+        };
+    }
+}
+
+/**
+ * Виконує вихід користувача з системи.
+ */
+function logout() {
+    currentUser = null;
+    updateUserUI();
+    showNotification('Вихід', 'Ви успішно вийшли з системи.', 'info');
+}
+
+// --- END NEW FUNCTIONS ---
 
 function scrollToTechnologies() {
     document.getElementById('technologies').scrollIntoView({ 
@@ -19,15 +56,20 @@ function closeUserDialog() {
 
 function switchTab(tab) {
     const buttons = document.querySelectorAll('.tab-button');
+    const nameField = document.getElementById('nameField');
+    const nameInput = document.getElementById('name');
+    
     buttons.forEach(btn => btn.classList.remove('active'));
     
     if (tab === 'login') {
         buttons[0].classList.add('active');
-        document.getElementById('nameField').style.display = 'none';
+        nameField.style.display = 'none';
+        nameInput.required = false; // Робимо поле імені необов'язковим для входу
         isLogin = true;
     } else {
         buttons[1].classList.add('active');
-        document.getElementById('nameField').style.display = 'block';
+        nameField.style.display = 'block';
+        nameInput.required = true; // Робимо поле імені обов'язковим для реєстрації
         isLogin = false;
     }
     
@@ -59,8 +101,10 @@ function switchAuthMode() {
     }
 }
 
-// Form submission
 document.addEventListener('DOMContentLoaded', function() {
+    // Ініціалізуємо інтерфейс при завантаженні сторінки
+    updateUserUI();
+
     const authForm = document.getElementById('authForm');
     
     authForm.addEventListener('submit', function(e) {
@@ -68,20 +112,32 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const name = document.getElementById('name').value;
+        const nameInput = document.getElementById('name');
         
         if (isLogin) {
             // Mock login
-            currentUser = { name: email.split('@')[0], email: email };
-            showNotification('Успішний вхід', 'Ви успішно увійшли до системи.');
+            // Для простоти, ім'я беремо з email, але в реальному додатку його б тягнули з бази
+            const mockName = email.split('@')[0];
+            currentUser = { name: mockName, email: email };
+            showNotification('Успішний вхід', `Ласкаво просимо, ${currentUser.name}!`);
         } else {
-            // Mock registration
+            // Registration
+            const name = nameInput.value.trim();
+
+            // --- UPDATED VALIDATION ---
+            if (!name) {
+                showNotification('Помилка реєстрації', 'Будь ласка, введіть ваше ім\'я.', 'error');
+                return; // Зупиняємо виконання, якщо ім'я не введено
+            }
+            // --- END UPDATED VALIDATION ---
+
             currentUser = { name: name, email: email };
-            showNotification('Успішна реєстрація', 'Ваш акаунт створено успішно.');
+            showNotification('Успішна реєстрація', `Дякуємо за реєстрацію, ${currentUser.name}!`);
         }
         
         closeUserDialog();
         clearForm();
+        updateUserUI(); // Оновлюємо інтерфейс після логіну/реєстрації
     });
 });
 
@@ -92,8 +148,9 @@ function googleAuth() {
         email: "user@gmail.com"
     };
     
-    showNotification('Успішний вхід через Google', 'Ви успішно увійшли через Google акаунт.');
+    showNotification('Успішний вхід через Google', `Ласкаво просимо, ${currentUser.name}!`);
     closeUserDialog();
+    updateUserUI(); // Оновлюємо інтерфейс
 }
 
 function clearForm() {
@@ -102,14 +159,28 @@ function clearForm() {
     document.getElementById('name').value = '';
 }
 
-function showNotification(title, message) {
-    // Simple notification system
+// Оновлена функція для показу сповіщень різного типу (успіх, помилка, інформація)
+function showNotification(title, message, type = 'success') {
     const notification = document.createElement('div');
+    
+    let backgroundColor;
+    switch (type) {
+        case 'error':
+            backgroundColor = '#dc2626'; // red
+            break;
+        case 'info':
+            backgroundColor = '#2563eb'; // blue
+            break;
+        default:
+            backgroundColor = '#16a34a'; // green
+            break;
+    }
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #16a34a;
+        background: ${backgroundColor};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 0.5rem;
@@ -130,7 +201,6 @@ function showNotification(title, message) {
     }, 3000);
 }
 
-// Close modal when clicking outside
 window.addEventListener('click', function(e) {
     const modal = document.getElementById('userModal');
     if (e.target === modal) {
@@ -138,7 +208,6 @@ window.addEventListener('click', function(e) {
     }
 });
 
-// Smooth scrolling for anchor links
 document.addEventListener('click', function(e) {
     if (e.target.matches('a[href^="#"]')) {
         e.preventDefault();
