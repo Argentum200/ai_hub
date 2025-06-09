@@ -302,18 +302,6 @@ body {
 .ai-button.indigo { background-color: #4f46e5; }
 .ai-button.indigo:hover { background-color: #4338ca; }
 
-/* Footer */
-.footer {
-    background-color: #1f2937;
-    border-top: 1px solid #374151;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.footer-content p {
-    color: #9ca3af;
-}
-
 /* Modal */
 .modal {
     display: none;
@@ -473,6 +461,45 @@ body {
     width: 100%;
 }
 
+/* --- УНІВЕРСАЛЬНИЙ ФУТЕР --- */
+.site-footer {
+    background-color: #111827;
+    border-top: 1px solid #374151;
+    padding: 2rem 0;
+}
+
+.footer-content-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-partner a {
+    display: inline-block;
+}
+
+.partner-logo-footer {
+    height: 50px; /* Збільшена висота логотипу */
+    filter: brightness(0) invert(1); /* Робить логотип білим */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.partner-logo-footer:hover {
+    opacity: 1;
+}
+
+.footer-copyright p {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    text-align: right;
+    margin: 0;
+    line-height: 1.5;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav {
@@ -494,4 +521,26 @@ body {
     .container {
         padding: 0 0.5rem;
     }
+
+    .footer-content-new {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-copyright p {
+        text-align: center;
+    }
+}
+
+/* Legacy Footer - for index.html */
+.footer {
+    background-color: #1f2937;
+    border-top: 1px solid #374151;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-content p {
+    color: #9ca3af;
 }
