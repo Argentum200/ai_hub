@@ -476,8 +476,16 @@ body {
     gap: 1.5rem;
 }
 
-.footer-partner a {
-    display: inline-block;
+.footer-partner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.partner-title-footer {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin: 0;
 }
 
 .partner-logo-footer {
@@ -485,6 +493,7 @@ body {
     filter: brightness(0) invert(1); /* Робить логотип білим */
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    display: block; /* Забирає зайвий відступ знизу */
 }
 
 .partner-logo-footer:hover {
@@ -526,6 +535,10 @@ body {
         flex-direction: column;
         justify-content: center;
         text-align: center;
+    }
+
+    .footer-partner {
+        justify-content: center;
     }
 
     .footer-copyright p {
