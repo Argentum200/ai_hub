@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Швидкий старт - ШІ Хаб</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css"> <!-- Використовуємо стилі зі сторінки "Про нас" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html"><h1>ШІ Хаб</h1></a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Головна</a>
+                    <a href="index.html#technologies" class="nav-link"><i class="fas fa-brain"></i> ШІ Технології</a>
+                    <a href="forum.html" class="nav-link"><i class="fas fa-comments"></i> Форум</a>
+                    <a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> Про нас</a>
+                    <a href="#" id="userAccountLink" class="nav-link" onclick="openUserDialog()"><i class="fas fa-user"></i> Обліковий запис</a>
+                    <a href="help.html" class="nav-link active"><i class="fas fa-question-circle"></i> Допомога</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Швидкий старт для початківців</h1>
+                <p>Ваші перші кроки у використанні найпопулярніших ШІ-платформ. Почніть створювати вже сьогодні!</p>
+            </div>
+
+            <div class="content-sections">
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <h2>Крок 1: Оберіть свою першу платформу</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Для початку радимо спробувати одну з трьох основних платформ. Кожна має свої сильні сторони:</p>
+                        <ul class="ethics-list">
+                            <li><strong>ChatGPT:</strong> Ідеально підходить для генерації тексту, написання коду та креативних завдань.</li>
+                            <li><strong>Google Gemini:</strong> Має доступ до актуальної інформації з інтернету, чудово підходить для досліджень та аналізу.</li>
+                            <li><strong>Anthropic Claude:</strong> Найкраще працює з великими документами, аналізом та структуруванням інформації.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-plus"></i>
+                        <h2>Крок 2: Реєстрація та перший вхід</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Процес реєстрації на всіх платформах дуже схожий. Зазвичай вам знадобиться лише електронна пошта або акаунт Google. Більшість платформ пропонують безкоштовний доступ з певними обмеженнями, якого цілком вистачить для знайомства.</p>
+                        <p style="margin-top: 1rem; color: #9ca3af;"><em>Порада: Завжди використовуйте унікальний та надійний пароль для кожного сервісу.</em></p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h2>Крок 3: Мистецтво написання промптів (запитів)</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Якість відповіді ШІ напряму залежить від якості вашого запиту. Ось кілька правил для створення ефективних промптів:</p>
+                        <ul class="ethics-list">
+                            <li><strong>Будьте чіткими та конкретними:</strong> Замість "розкажи про машини", спробуйте "поясни принцип роботи чотиритактного двигуна внутрішнього згоряння для 10-річної дитини".</li>
+                            <li><strong>Надавайте контекст:</strong> "Я пишу статтю для блогу про переваги здорового харчування. Запропонуй 5 ідей для заголовків".</li>
+                            <li><strong>Визначте роль:</strong> "Уяви, що ти досвідчений копірайтер. Напиши рекламний текст для нового кавового напою".</li>
+                            <li><strong>Вкажіть формат:</strong> "Надай відповідь у вигляді таблиці з трьома колонками: Назва, Опис, Переваги".</li>
+                            <li><strong>Ітеруйте:</strong> Якщо перша відповідь вас не влаштовує, не здавайтеся. Уточніть свій запит, додайте деталей або попросіть переписати відповідь в іншому стилі.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-rocket"></i>
+                        <h2>Практичні приклади для старту</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Спробуйте скопіювати ці запити та подивитись, що вийде:</p>
+                        <ul class="ethics-list">
+                            <li>"Напиши короткий електронний лист колезі з проханням надіслати звіт до кінця дня. Стиль — дружній, але професійний."</li>
+                            <li>"Склади план подорожі до Львова на 3 дні. Включи ранкові, денні та вечірні активності. Бюджет середній."</li>
+                            <li>"Поясни концепцію 'API' так, ніби я нічого не знаю про програмування."</li>
+                             <li>"Напиши невеликий вірш про осінь у Карпатах."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-arrow-right"></i>
+                        <h2>Що далі?</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Тепер, коли ви знаєте основи, час експериментувати! Спробуйте вирішувати свої щоденні завдання за допомогою ШІ. А якщо хочете зрозуміти теоретичну базу, перейдіть до нашого розділу <a href="ai-basics.html" style="color: #3b82f6; text-decoration: none;">"Основи ШІ"</a>. Виникли питання? Задайте їх на нашому <a href="forum.html" style="color: #3b82f6; text-decoration: none;">форумі</a>!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2024 ШІ Хаб. Всі права захищені.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- User Account Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserDialog()">×</span>
+            <h2>Обліковий запис</h2>
+            <div class="auth-form">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('login')">Вхід</button>
+                    <button class="tab-button" onclick="switchTab('register')">Реєстрація</button>
+                </div>
+                <form id="authForm">
+                    <div id="nameField" class="form-group" style="display: none;">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" placeholder="Введіть ваше ім'я" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введіть ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введіть ваш пароль" required>
+                    </div>
+                    <button type="submit" class="submit-button">Увійти</button>
+                </form>
+                <div class="divider"><span>Або</span></div>
+                <button class="google-button" onclick="googleAuth()"><i class="fab fa-google"></i> Увійти через Google</button>
+                <button class="switch-mode" onclick="switchAuthMode()">Немає акаунту? Зареєструйтеся</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

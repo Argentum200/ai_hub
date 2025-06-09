@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основи ШІ - ШІ Хаб</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css"> <!-- Використовуємо стилі зі сторінки "Про нас" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html"><h1>ШІ Хаб</h1></a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Головна</a>
+                    <a href="index.html#technologies" class="nav-link"><i class="fas fa-brain"></i> ШІ Технології</a>
+                    <a href="forum.html" class="nav-link"><i class="fas fa-comments"></i> Форум</a>
+                    <a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> Про нас</a>
+                    <a href="#" id="userAccountLink" class="nav-link" onclick="openUserDialog()"><i class="fas fa-user"></i> Обліковий запис</a>
+                    <a href="help.html" class="nav-link active"><i class="fas fa-question-circle"></i> Допомога</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Основи штучного інтелекту</h1>
+                <p>Ключові концепції, терміни та технології, які формують світ сучасного ШІ. Розберіться в тому, як це працює.</p>
+            </div>
+
+            <div class="content-sections">
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h2>Що таке Штучний Інтелект (ШІ)?</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Штучний інтелект (Artificial Intelligence, AI)</strong> — це широка галузь комп'ютерних наук, метою якої є створення машин, здатних виконувати завдання, що зазвичай вимагають людського інтелекту. Це включає навчання, розв'язання проблем, сприйняття, розуміння мови тощо.</p>
+                        <p style="margin-top: 1rem;">Розрізняють <strong>слабкий (вузький) ШІ</strong>, який розроблений для конкретного завдання (наприклад, гра в шахи або розпізнавання облич), і <strong>сильний ШІ (або Загальний ШІ)</strong>, який мав би свідомість і здатність вирішувати будь-які інтелектуальні завдання, як людина. Наразі всі існуючі ШІ є слабкими.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h2>Машинне Навчання (Machine Learning, ML)</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Машинне навчання</strong> — це підрозділ ШІ, який фокусується на розробці алгоритмів, що дозволяють комп'ютерам навчатися на основі даних без прямого програмування. Замість того, щоб писати код для кожного конкретного правила, ми "годуємо" модель даними, і вона сама знаходить у них закономірності.</p>
+                        <p style="margin-top: 1rem;">Наприклад, щоб навчити модель розпізнавати котів, ми показуємо їй тисячі зображень з котами, і вона сама вчиться виділяти характерні риси.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h2>Нейронні Мережі та Глибоке Навчання (Deep Learning)</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Нейронні мережі</strong> — це один із методів машинного навчання, натхненний структурою людського мозку. Вони складаються з взаємопов'язаних "нейронів", організованих у шари. Кожен нейрон отримує вхідні дані, обробляє їх і передає далі.</p>
+                        <p style="margin-top: 1rem;"><strong>Глибоке навчання (Deep Learning)</strong> — це просто нейронні мережі з великою кількістю шарів (звідси й назва "глибоке"). Саме глибоке навчання є основою для найсучасніших ШІ-систем, включаючи ті, що генерують текст та зображення.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-book-open"></i>
+                        <h2>Великі Мовні Моделі (Large Language Models, LLM)</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Великі мовні моделі (LLM)</strong>, такі як GPT, Gemini та Claude, є прикладом глибокого навчання. Це гігантські нейронні мережі, навчені на величезних обсягах текстових даних з інтернету, книг та інших джерел. Їхнє основне завдання — передбачити наступне слово в реченні. Завдяки цьому вони можуть генерувати осмислений текст, відповідати на питання, перекладати мови та багато іншого.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h2>Хочете дізнатись більше?</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Тепер, коли ви розумієте теорію, саме час застосувати її на практиці! Перейдіть до нашого розділу <a href="quick-start.html" style="color: #3b82f6; text-decoration: none;">"Швидкий старт"</a>, щоб почати експериментувати. Або приєднуйтесь до обговорень на нашому <a href="forum.html" style="color: #3b82f6; text-decoration: none;">форумі</a>!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 ШІ Хаб. Всі права захищені.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- User Account Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserDialog()">×</span>
+            <h2>Обліковий запис</h2>
+            <div class="auth-form">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('login')">Вхід</button>
+                    <button class="tab-button" onclick="switchTab('register')">Реєстрація</button>
+                </div>
+                <form id="authForm">
+                    <div id="nameField" class="form-group" style="display: none;">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" placeholder="Введіть ваше ім'я" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введіть ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введіть ваш пароль" required>
+                    </div>
+                    <button type="submit" class="submit-button">Увійти</button>
+                </form>
+                <div class="divider"><span>Або</span></div>
+                <button class="google-button" onclick="googleAuth()"><i class="fab fa-google"></i> Увійти через Google</button>
+                <button class="switch-mode" onclick="switchAuthMode()">Немає акаунту? Зареєструйтеся</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
